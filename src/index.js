@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
+const empleadosRoutes = require('./routes/empleados.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,6 +14,8 @@ app.use(morgan('dev'));
 app.get('/', (req, res) => {
   res.json({ message: 'API REST Empleados' });
 });
+
+app.use('/empleados', empleadosRoutes);
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en puerto ${PORT}`);
