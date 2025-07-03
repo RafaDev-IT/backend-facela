@@ -69,6 +69,28 @@ const empleadosController = {
         error: error.message
       });
     }
+  },
+
+  eliminarEmpleado: (req, res) => {
+    try {
+      const { id } = req.params;
+      const eliminado = empleadosService.eliminarEmpleado(id);
+      
+      if (!eliminado) {
+        return res.status(404).json({
+          message: 'Empleado no encontrado'
+        });
+      }
+      
+      res.json({
+        message: 'Empleado eliminado exitosamente'
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: 'Error al eliminar empleado',
+        error: error.message
+      });
+    }
   }
 };
 

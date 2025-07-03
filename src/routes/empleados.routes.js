@@ -32,4 +32,10 @@ router.put('/:id',
   empleadosController.actualizarEmpleado
 );
 
+router.delete('/:id',
+  idParamValidation(),
+  handleValidationErrors,
+  empleadosController.eliminarEmpleado
+);
+
 module.exports = router;

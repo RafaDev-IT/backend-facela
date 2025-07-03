@@ -72,6 +72,10 @@ const empleadosService = {
       empleadoActualizado.puesto,
       empleadoActualizado.departamento
     );
+  },
+
+  eliminarEmpleado: (id) => {
+    return database.empleados.delete(id);
   }
 };
 
