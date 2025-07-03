@@ -14,6 +14,22 @@ const empleadosController = {
         error: error.message
       });
     }
+  },
+
+  obtenerEmpleados: (req, res) => {
+    try {
+      const empleados = empleadosService.obtenerEmpleados(req.query);
+      res.json({
+        message: 'Empleados obtenidos exitosamente',
+        total: empleados.length,
+        data: empleados
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: 'Error al obtener empleados',
+        error: error.message
+      });
+    }
   }
 };
 
