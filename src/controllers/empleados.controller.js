@@ -30,6 +30,22 @@ const empleadosController = {
         error: error.message
       });
     }
+  },
+
+  obtenerEmpleadosMayores: (req, res) => {
+    try {
+      const empleadosMayores = empleadosService.obtenerEmpleadosMayores();
+      res.json({
+        message: 'Empleados mayores a 30 años obtenidos exitosamente',
+        total: empleadosMayores.length,
+        data: empleadosMayores
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: 'Error al obtener empleados mayores',
+        error: error.message
+      });
+    }
   }
 };
 

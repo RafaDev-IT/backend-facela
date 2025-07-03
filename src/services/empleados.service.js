@@ -43,6 +43,19 @@ const empleadosService = {
       emp.puesto,
       emp.departamento
     ));
+  },
+
+  obtenerEmpleadosMayores: () => {
+    const empleados = database.empleados.getAll();
+    const empleadosMayores = empleados.filter(emp => emp.edad > 30);
+    
+    return empleadosMayores.map(emp => new Empleado(
+      emp.id,
+      emp.nombre,
+      emp.edad,
+      emp.puesto,
+      emp.departamento
+    ));
   }
 };
 

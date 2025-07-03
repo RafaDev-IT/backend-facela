@@ -19,4 +19,8 @@ router.get('/',
   empleadosController.obtenerEmpleados
 );
 
+router.get('/mayores',
+  empleadosController.obtenerEmpleadosMayores
+);
+
 module.exports = router;
