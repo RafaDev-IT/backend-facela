@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const empleadosRoutes = require('./routes/empleados.routes');
+const estadisticasRoutes = require('./routes/estadisticas.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,6 +17,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/empleados', empleadosRoutes);
+app.use('/estadisticas', estadisticasRoutes);
 
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en puerto ${PORT}`);
