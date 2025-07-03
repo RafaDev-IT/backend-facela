@@ -56,6 +56,22 @@ const empleadosService = {
       emp.puesto,
       emp.departamento
     ));
+  },
+
+  actualizarEmpleado: (id, datosActualizados) => {
+    const empleadoActualizado = database.empleados.update(id, datosActualizados);
+    
+    if (!empleadoActualizado) {
+      return null;
+    }
+    
+    return new Empleado(
+      empleadoActualizado.id,
+      empleadoActualizado.nombre,
+      empleadoActualizado.edad,
+      empleadoActualizado.puesto,
+      empleadoActualizado.departamento
+    );
   }
 };
 

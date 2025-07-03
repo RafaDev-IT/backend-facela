@@ -46,6 +46,29 @@ const empleadosController = {
         error: error.message
       });
     }
+  },
+
+  actualizarEmpleado: (req, res) => {
+    try {
+      const { id } = req.params;
+      const empleadoActualizado = empleadosService.actualizarEmpleado(id, req.body);
+      
+      if (!empleadoActualizado) {
+        return res.status(404).json({
+          message: 'Empleado no encontrado'
+        });
+      }
+      
+      res.json({
+        message: 'Empleado actualizado exitosamente',
+        data: empleadoActualizado
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: 'Error al actualizar empleado',
+        error: error.message
+      });
+    }
   }
 };
 

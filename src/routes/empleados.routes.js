@@ -4,7 +4,9 @@ const empleadosController = require('../controllers/empleados.controller');
 const { 
   empleadoValidationRules, 
   handleValidationErrors,
-  filterValidationRules
+  filterValidationRules,
+  empleadoUpdateValidationRules,
+  idParamValidation
 } = require('../utils/validators');
 
 router.post('/', 
@@ -21,6 +23,13 @@ router.get('/',
 
 router.get('/mayores',
   empleadosController.obtenerEmpleadosMayores
+);
+
+router.put('/:id',
+  idParamValidation(),
+  empleadoUpdateValidationRules(),
+  handleValidationErrors,
+  empleadosController.actualizarEmpleado
 );
 
 module.exports = router;
