@@ -18,11 +18,10 @@ const empleadosController = {
 
   obtenerEmpleados: (req, res) => {
     try {
-      const empleados = empleadosService.obtenerEmpleados(req.query);
+      const resultado = empleadosService.obtenerEmpleados(req.query);
       res.json({
         message: 'Empleados obtenidos exitosamente',
-        total: empleados.length,
-        data: empleados
+        ...resultado
       });
     } catch (error) {
       res.status(500).json({

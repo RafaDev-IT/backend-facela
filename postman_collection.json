@@ -55,12 +55,35 @@
       }
     },
     {
-      "name": "Listar Empleados con Filtros",
+      "name": "Listar Empleados con Paginación",
       "request": {
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "{{base_url}}/empleados?edadMin=25&edadMax=35&puesto=Desarrollador&departamento=Tecnología",
+          "raw": "{{base_url}}/empleados?page=1&limit=5",
+          "host": ["{{base_url}}"],
+          "path": ["empleados"],
+          "query": [
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "5"
+            }
+          ]
+        },
+        "description": "Lista empleados con paginación (página 1, 5 items por página)"
+      }
+    },
+    {
+      "name": "Listar Empleados con Filtros y Paginación",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/empleados?edadMin=25&edadMax=35&puesto=Desarrollador&departamento=Tecnología&page=1&limit=10",
           "host": ["{{base_url}}"],
           "path": ["empleados"],
           "query": [
@@ -79,10 +102,18 @@
             {
               "key": "departamento",
               "value": "Tecnología"
+            },
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
             }
           ]
         },
-        "description": "Lista empleados aplicando filtros de edad, puesto y departamento"
+        "description": "Lista empleados aplicando filtros  de edad, puesto, departamento e implementando paginación"
       }
     },
     {

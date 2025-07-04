@@ -5,6 +5,7 @@
 ## 🚀 Características Principales
 
 - ✨ **CRUD Completo** de empleados con validaciones robustas
+- 📄 **Paginación eficiente** con metadatos completos
 - 🔍 **Filtros avanzados** por edad, puesto y departamento
 - 📊 **Estadísticas en tiempo real** de la plantilla
 - 🛡️ **Validaciones profesionales** con express-validator
@@ -12,6 +13,7 @@
 - ⚡ **Arquitectura limpia** con separación de responsabilidades
 - 🔄 **API RESTful** siguiendo estándares HTTP
 - 🌐 **CORS habilitado** para integración con frontends
+- 🏥 **Health Check** endpoint para monitoreo
 
 ## 🛠️ Stack Tecnológico
 
@@ -147,22 +149,25 @@ Crea un nuevo empleado en el sistema.
 
 ---
 
-#### 2️⃣ **GET** `/empleados` - Listar empleados
+#### 2️⃣ **GET** `/empleados` - Listar empleados con paginación
 
-Obtiene la lista de empleados con filtros opcionales.
+Obtiene la lista de empleados con filtros opcionales y paginación.
 
-**🔍 Query Parameters (opcionales):**
-| Parámetro | Tipo | Descripción |
-|-----------|------|-------------|
-| `edadMin` | number | Edad mínima |
-| `edadMax` | number | Edad máxima |
-| `puesto` | string | Filtrar por puesto (búsqueda parcial) |
-| `departamento` | string | Filtrar por departamento (búsqueda parcial) |
+**🔍 Query Parameters (todos opcionales):**
+| Parámetro | Tipo | Descripción | Default |
+|-----------|------|-------------|---------|
+| `page` | number | Número de página | 1 |
+| `limit` | number | Items por página (máx 100) | 10 |
+| `edadMin` | number | Edad mínima | - |
+| `edadMax` | number | Edad máxima | - |
+| `puesto` | string | Filtrar por puesto (búsqueda parcial) | - |
+| `departamento` | string | Filtrar por departamento (búsqueda parcial) | - |
 
-**💡 Ejemplo de uso:**
+**💡 Ejemplos de uso:**
 
 ```
-GET /empleados?edadMin=25&edadMax=35&puesto=Desarrollador
+GET /empleados?page=1&limit=5
+GET /empleados?edadMin=25&edadMax=35&puesto=Desarrollador&page=2&limit=10
 ```
 
 **📤 Response (200):**
@@ -170,7 +175,6 @@ GET /empleados?edadMin=25&edadMax=35&puesto=Desarrollador
 ```json
 {
   "message": "Empleados obtenidos exitosamente",
-  "total": 2,
   "data": [
     {
       "id": 1,
@@ -179,7 +183,15 @@ GET /empleados?edadMin=25&edadMax=35&puesto=Desarrollador
       "puesto": "Desarrollador",
       "departamento": "Tecnología"
     }
-  ]
+  ],
+  "pagination": {
+    "currentPage": 1,
+    "totalPages": 3,
+    "totalItems": 15,
+    "itemsPerPage": 5,
+    "hasNextPage": true,
+    "hasPreviousPage": false
+  }
 }
 ```
 
