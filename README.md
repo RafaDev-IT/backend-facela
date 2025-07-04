@@ -106,8 +106,15 @@ La documentación Swagger incluye:
 ## 📚 API Reference
 
 ### 🎯 Base URL
+
+**🔧 Desarrollo:**
 ```
 http://localhost:3000
+```
+
+**🌐 Producción:**
+```
+https://backend-facela.onrender.com
 ```
 
 ---

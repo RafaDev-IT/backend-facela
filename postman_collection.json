@@ -226,5 +226,29 @@
       "value": "http://localhost:3000",
       "type": "string"
     }
+  ],
+  "environment": [
+    {
+      "name": "Development",
+      "values": [
+        {
+          "key": "base_url",
+          "value": "http://localhost:3000",
+          "enabled": true,
+          "type": "default"
+        }
+      ]
+    },
+    {
+      "name": "Production",
+      "values": [
+        {
+          "key": "base_url",
+          "value": "https://backend-facela.onrender.com",
+          "enabled": true,
+          "type": "default"
+        }
+      ]
+    }
   ]
 }
