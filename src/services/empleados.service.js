@@ -102,7 +102,7 @@ const empleadosService = {
     if (datosActualizados.nombre) {
       const empleadoExistente = database.empleados.getByNombre(datosActualizados.nombre);
       if (empleadoExistente && empleadoExistente.id !== parseInt(id)) {
-        throw new Error('Ya existe otro empleado con ese nombre');
+        throw new Error('Ya existe un empleado con ese nombre');
       }
     }
     
@@ -139,6 +139,61 @@ const empleadosService = {
       empleado.puesto,
       empleado.departamento
     );
+  },
+  
+  // Métodos adicionales para compatibilidad con tests
+  obtenerEmpleadoMayores: () => {
+    const empleados = database.empleados.getAll();
+    const empleadosMayores = empleados.filter(emp => emp.edad > 30);
+    
+    return empleadosMayores.map(emp => new Empleado(
+      emp.id,
+      emp.nombre,
+      emp.edad,
+      emp.puesto,
+      emp.departamento
+    ));
+  },
+  
+  verificarNombreDuplicado: (nombre, exceptoId = null) => {
+    const empleado = database.empleados.getByNombre(nombre);
+    if (!empleado) return false;
+    if (exceptoId && empleado.id === parseInt(exceptoId)) return false;
+    return true;
+  },
+  
+  obtenerEstadisticas: () => {
+    const empleados = database.empleados.getAll();
+    
+    if (empleados.length === 0) {
+      return {
+        totalEmpleados: 0,
+        promedioEdad: 0,
+        cantidadPorPuesto: {},
+        cantidadPorDepartamento: {}
+      };
+    }
+    
+    const totalEmpleados = empleados.length;
+    const sumaEdades = empleados.reduce((sum, emp) => sum + emp.edad, 0);
+    const promedioEdad = Math.round(sumaEdades / totalEmpleados);
+    
+    const cantidadPorPuesto = empleados.reduce((acc, emp) => {
+      acc[emp.puesto] = (acc[emp.puesto] || 0) + 1;
+      return acc;
+    }, {});
+    
+    const cantidadPorDepartamento = empleados.reduce((acc, emp) => {
+      acc[emp.departamento] = (acc[emp.departamento] || 0) + 1;
+      return acc;
+    }, {});
+    
+    return {
+      totalEmpleados,
+      promedioEdad,
+      cantidadPorPuesto,
+      cantidadPorDepartamento
+    };
   }
 };
 

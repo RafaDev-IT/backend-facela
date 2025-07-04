@@ -105,5 +105,6 @@ module.exports = {
   empleadoValidationRules,
   empleadoUpdateValidationRules,
   idParamValidation,
+  idValidation: idParamValidation, // Alias para compatibilidad con tests
   filterValidationRules
 };

@@ -104,7 +104,7 @@ const seedEmpleados = () => {
       // Verificar si ya existe
       const existe = database.empleados.getByNombre(empleado.nombre);
       if (existe) {
-        console.log(`⏭️  Empleado "${empleado.nombre}" ya existe, saltando...`);
+        console.log(`⏭️  Empleado "${empleado.nombre}" duplicado omitido`);
         skipped++;
       } else {
         database.empleados.create(empleado);

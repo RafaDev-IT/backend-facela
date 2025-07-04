@@ -69,7 +69,7 @@ const empleadosController = {
         data: empleadoActualizado
       });
     } catch (error) {
-      if (error.message === 'Ya existe otro empleado con ese nombre') {
+      if (error.message === 'Ya existe un empleado con ese nombre') {
         return res.status(409).json({
           message: 'Conflicto',
           error: error.message

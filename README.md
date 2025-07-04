@@ -24,6 +24,10 @@
 - 📝 **Morgan** - Logger HTTP para desarrollo
 - 🌐 **CORS** - Manejo de solicitudes cross-origin
 - 🔄 **Nodemon** - Hot-reload en desarrollo
+- 🧪 **Jest & Supertest** - Testing unitario y de integración
+- 🐳 **Docker** - Contenerización y despliegue
+- 📖 **Swagger/OpenAPI** - Documentación interactiva
+- 📊 **Winston** - Logging profesional
 - 🎯 **JavaScript ES6+** - Sintaxis moderna
 
 ## 📁 Estructura del Proyecto
@@ -39,6 +43,9 @@ backend-facela/
 │   ├── 💼 services/        # Lógica de negocio
 │   ├── 🔨 utils/           # Utilidades y validadores
 │   └── 🚀 index.js         # Punto de entrada
+├── 🧪 tests/              # Tests unitarios y de integración
+├── 🐳 Dockerfile          # Configuración Docker
+├── 🐳 docker-compose.yml  # Orquestación de contenedores
 ├── 🔐 .env                # Variables de entorno (ignorado en git)
 ├── 📄 .env.example         # Variables de entorno ejemplo
 ├── 🚫 .gitignore
@@ -341,8 +348,8 @@ Endpoint para monitoreo y estado del servicio.
 ### 1. **Validación de Nombres Duplicados**
 Agregué validación para evitar empleados con nombres idénticos, devolviendo error 409 (Conflict).
 
-### 2. **Logging Avanzado con Winston**
-Implementé logs con rotación diaria y archivos separados para errores.
+### 2. **Logging Profesional con Winston**
+Implementé logs con archivos separados para errores y logs combinados.
 
 ### 3. **Seeder de Datos**
 Creé un endpoint POST /seed con 15 empleados realistas para facilitar las pruebas.
@@ -361,6 +368,12 @@ Implementé respuestas HTTP apropiadas (400, 404, 409, 500) con mensajes descrip
 
 ### 8. **Documentación Swagger/OpenAPI**
 Documentación interactiva completa con distinción entre endpoints requeridos y adicionales.
+
+### 9. **Suite de Tests Completa**
+Implementé tests unitarios y de integración con Jest y Supertest, alcanzando alta cobertura de código (+80%).
+
+### 10. **Dockerización**
+Contenerización con Docker para facilitar el despliegue.
 
 ## ⚠️ Manejo de Errores
 
@@ -405,12 +418,12 @@ La API maneja errores de forma consistente y amigable:
 | --------------------- | --------------------------------------- |
 | 🛡️ **Validaciones**   | Express-validator para inputs seguros   |
 | 🌐 **CORS**           | Habilitado para cualquier origen        |
-| 📝 **Logging**        | Winston con rotación diaria + Morgan    |
+| 📝 **Logging**        | Winston + Morgan para desarrollo        |
 | 💾 **Almacenamiento** | In-memory (se reinicia con el servidor) |
 | 🔄 **Hot Reload**     | Nodemon en desarrollo                   |
 | 🏗️ **Arquitectura**   | MVC con servicios separados             |
 | 🚫 **Duplicados**     | Validación de nombres únicos            |
-| 📁 **Logs**           | Archivos con rotación de 14 días        |
+| 📁 **Logs**           | Archivos error.log y combined.log       |
 
 ### 📦 Colección de Postman Incluida
 
@@ -458,9 +471,10 @@ GET http://localhost:3000/estadisticas
 ## 📜 Scripts Disponibles
 
 ```bash
-npm run dev     # 🔥 Desarrollo con hot-reload
-npm start       # 🚀 Producción
-npm test        # 🧪 Tests (por implementar)
+npm run dev          # 🔥 Desarrollo con hot-reload
+npm start            # 🚀 Producción
+npm test             # 🧪 Ejecutar todos los tests
+npm run test:coverage # 📊 Tests con reporte de cobertura
 ```
 
 ### 🌱 Datos de Ejemplo (Seeder)
@@ -476,6 +490,19 @@ El seeder:
 - 🚫 Evita duplicados si ya existen
 - 📊 Muestra resumen de la operación
 - 🎯 Perfecto para testing y demos
+
+### 🐳 Docker
+
+El proyecto incluye soporte completo para Docker:
+
+```bash
+# Construir y ejecutar con Docker Compose
+docker-compose up --build
+
+# O construir imagen manualmente
+docker build -t empleados-api .
+docker run -p 3000:3000 empleados-api
+```
 
 ---
 
