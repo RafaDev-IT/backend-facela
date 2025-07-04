@@ -290,6 +290,33 @@ GET /empleados/1
 
 ---
 
+### 🌱 **POST** `/seed` - Poblar datos de ejemplo
+**➕ Adicional**
+
+Endpoint para cargar datos de ejemplo en la base de datos.
+
+```
+POST /seed
+```
+
+**📤 Response:**
+```json
+{
+  "message": "Seed ejecutado exitosamente",
+  "logs": [
+    "Iniciando proceso de seed...",
+    "✅ Empleado creado: Carlos Rodríguez (ID: 1)",
+    "✅ Empleado creado: Ana Martínez (ID: 2)"
+  ],
+  "resumen": {
+    "mensaje": "Base de datos poblada con datos de ejemplo",
+    "detalles": "✅ Proceso completado: 15 empleados creados, 0 duplicados omitidos"
+  }
+}
+```
+
+---
+
 ### 🏥 **GET** `/health` - Health Check
 **➕ Adicional**
 
@@ -318,21 +345,21 @@ Agregué validación para evitar empleados con nombres idénticos, devolviendo e
 Implementé logs con rotación diaria y archivos separados para errores.
 
 ### 3. **Seeder de Datos**
-Creé un seeder con 15 empleados realistas para facilitar las pruebas:
-```bash
-npm run seed
-```
+Creé un endpoint POST /seed con 15 empleados realistas para facilitar las pruebas.
 
 ### 4. **Colección de Postman**
 Incluí una colección completa para importar y probar todos los endpoints.
 
-### 5. **Estructura MVC Profesional**
+### 5. **Endpoint de Seed**
+Convertí el script de seed en un endpoint POST /seed para mayor flexibilidad.
+
+### 6. **Estructura MVC Profesional**
 Organicé el código siguiendo el patrón MVC con servicios separados.
 
-### 6. **Manejo de Errores Consistente**
+### 7. **Manejo de Errores Consistente**
 Implementé respuestas HTTP apropiadas (400, 404, 409, 500) con mensajes descriptivos.
 
-### 7. **Documentación Swagger/OpenAPI**
+### 8. **Documentación Swagger/OpenAPI**
 Documentación interactiva completa con distinción entre endpoints requeridos y adicionales.
 
 ## ⚠️ Manejo de Errores
@@ -433,16 +460,15 @@ GET http://localhost:3000/estadisticas
 ```bash
 npm run dev     # 🔥 Desarrollo con hot-reload
 npm start       # 🚀 Producción
-npm run seed    # 🌱 Poblar base de datos con 15 empleados de ejemplo
 npm test        # 🧪 Tests (por implementar)
 ```
 
 ### 🌱 Datos de Ejemplo (Seeder)
 
-Ejecuta el seeder para poblar la base de datos con 15 empleados de ejemplo:
+Utiliza el endpoint POST /seed para poblar la base de datos con 15 empleados de ejemplo:
 
 ```bash
-npm run seed
+curl -X POST http://localhost:3000/seed
 ```
 
 El seeder:

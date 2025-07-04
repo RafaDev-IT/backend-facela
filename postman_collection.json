@@ -189,6 +189,19 @@
         },
         "description": "Obtiene estadísticas generales de todos los empleados"
       }
+    },
+    {
+      "name": "Poblar Datos de Ejemplo (Seed)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/seed",
+          "host": ["{{base_url}}"],
+          "path": ["seed"]
+        },
+        "description": "Ejecuta el seeder para poblar la base de datos con 15 empleados de ejemplo"
+      }
     }
   ],
   "event": [

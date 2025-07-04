@@ -4,6 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const empleadosRoutes = require('./routes/empleados.routes');
 const estadisticasRoutes = require('./routes/estadisticas.routes');
+const seedRoutes = require('./routes/seed.routes');
 const loggerMiddleware = require('./middleware/logger.middleware');
 const { specs, swaggerUi } = require('./config/swagger');
 
@@ -91,6 +92,7 @@ app.get('/health', (req, res) => {
 
 app.use('/empleados', empleadosRoutes);
 app.use('/estadisticas', estadisticasRoutes);
+app.use('/seed', seedRoutes);
 
 app.listen(PORT, () => {
   console.log(`
