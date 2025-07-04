@@ -25,6 +25,12 @@ router.get('/mayores',
   empleadosController.obtenerEmpleadosMayores
 );
 
+router.get('/:id',
+  idParamValidation(),
+  handleValidationErrors,
+  empleadosController.obtenerEmpleadoPorId
+);
+
 router.put('/:id',
   idParamValidation(),
   empleadoUpdateValidationRules(),

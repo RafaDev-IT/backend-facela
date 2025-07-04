@@ -91,7 +91,12 @@ const filterValidationRules = () => {
     
     query('limit')
       .optional()
-      .isInt({ min: 1, max: 100 }).withMessage('El límite debe ser un número entre 1 y 100')
+      .isInt({ min: 1, max: 100 }).withMessage('El límite debe ser un número entre 1 y 100'),
+    
+    query('search')
+      .optional()
+      .trim()
+      .isString().withMessage('La búsqueda debe ser texto')
   ];
 };
 

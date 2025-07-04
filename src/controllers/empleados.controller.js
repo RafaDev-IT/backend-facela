@@ -9,6 +9,12 @@ const empleadosController = {
         data: nuevoEmpleado
       });
     } catch (error) {
+      if (error.message === 'Ya existe un empleado con ese nombre') {
+        return res.status(409).json({
+          message: 'Conflicto',
+          error: error.message
+        });
+      }
       res.status(500).json({
         message: 'Error al crear empleado',
         error: error.message
@@ -63,6 +69,12 @@ const empleadosController = {
         data: empleadoActualizado
       });
     } catch (error) {
+      if (error.message === 'Ya existe otro empleado con ese nombre') {
+        return res.status(409).json({
+          message: 'Conflicto',
+          error: error.message
+        });
+      }
       res.status(500).json({
         message: 'Error al actualizar empleado',
         error: error.message
@@ -87,6 +99,29 @@ const empleadosController = {
     } catch (error) {
       res.status(500).json({
         message: 'Error al eliminar empleado',
+        error: error.message
+      });
+    }
+  },
+
+  obtenerEmpleadoPorId: (req, res) => {
+    try {
+      const { id } = req.params;
+      const empleado = empleadosService.obtenerEmpleadoPorId(id);
+      
+      if (!empleado) {
+        return res.status(404).json({
+          message: 'Empleado no encontrado'
+        });
+      }
+      
+      res.json({
+        message: 'Empleado obtenido exitosamente',
+        data: empleado
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: 'Error al obtener empleado',
         error: error.message
       });
     }

@@ -7,6 +7,10 @@ const database = {
     
     getById: (id) => empleados.find(emp => emp.id === parseInt(id)),
     
+    getByNombre: (nombre) => empleados.find(emp => 
+      emp.nombre.toLowerCase().trim() === nombre.toLowerCase().trim()
+    ),
+    
     create: (empleadoData) => {
       const nuevoEmpleado = {
         id: nextId++,

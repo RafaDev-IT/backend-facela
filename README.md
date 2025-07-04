@@ -158,6 +158,7 @@ Obtiene la lista de empleados con filtros opcionales y paginación.
 |-----------|------|-------------|---------|
 | `page` | number | Número de página | 1 |
 | `limit` | number | Items por página (máx 100) | 10 |
+| `search` | string | Buscar por nombre | - |
 | `edadMin` | number | Edad mínima | - |
 | `edadMax` | number | Edad máxima | - |
 | `puesto` | string | Filtrar por puesto (búsqueda parcial) | - |
@@ -197,7 +198,31 @@ GET /empleados?edadMin=25&edadMax=35&puesto=Desarrollador&page=2&limit=10
 
 ---
 
-#### 3️⃣ **GET** `/empleados/mayores` - Empleados mayores de 30
+#### 3️⃣ **GET** `/empleados/:id` - Obtener empleado por ID
+
+Obtiene la información de un empleado específico.
+
+**🔧 Parámetros:**
+- `id`: ID del empleado (número entero)
+
+**📤 Response (200):**
+
+```json
+{
+  "message": "Empleado obtenido exitosamente",
+  "data": {
+    "id": 1,
+    "nombre": "Juan Pérez",
+    "edad": 28,
+    "puesto": "Desarrollador",
+    "departamento": "Tecnología"
+  }
+}
+```
+
+---
+
+#### 4️⃣ **GET** `/empleados/mayores` - Empleados mayores de 30
 
 Lista todos los empleados con edad superior a 30 años.
 
@@ -221,7 +246,7 @@ Lista todos los empleados con edad superior a 30 años.
 
 ---
 
-#### 4️⃣ **PUT** `/empleados/:id` - Actualizar empleado
+#### 5️⃣ **PUT** `/empleados/:id` - Actualizar empleado
 
 Actualiza los datos de un empleado existente.
 
@@ -265,7 +290,7 @@ Actualiza los datos de un empleado existente.
 
 ---
 
-#### 5️⃣ **DELETE** `/empleados/:id` - Eliminar empleado
+#### 6️⃣ **DELETE** `/empleados/:id` - Eliminar empleado
 
 Elimina un empleado del sistema.
 
@@ -291,7 +316,7 @@ Elimina un empleado del sistema.
 
 ---
 
-#### 6️⃣ **GET** `/estadisticas` - Estadísticas generales
+#### 7️⃣ **GET** `/estadisticas` - Estadísticas generales
 
 Obtiene un resumen estadístico de todos los empleados.
 
@@ -336,6 +361,15 @@ La API maneja errores de forma consistente y amigable:
 }
 ```
 
+### ⚠️ Error de Conflicto (409)
+
+```json
+{
+  "message": "Conflicto",
+  "error": "Ya existe un empleado con ese nombre"
+}
+```
+
 ### 💥 Error del Servidor (500)
 
 ```json
@@ -351,10 +385,12 @@ La API maneja errores de forma consistente y amigable:
 | --------------------- | --------------------------------------- |
 | 🛡️ **Validaciones**   | Express-validator para inputs seguros   |
 | 🌐 **CORS**           | Habilitado para cualquier origen        |
-| 📝 **Logging**        | Morgan + middleware personalizado       |
+| 📝 **Logging**        | Winston con rotación diaria + Morgan    |
 | 💾 **Almacenamiento** | In-memory (se reinicia con el servidor) |
 | 🔄 **Hot Reload**     | Nodemon en desarrollo                   |
 | 🏗️ **Arquitectura**   | MVC con servicios separados             |
+| 🚫 **Duplicados**     | Validación de nombres únicos            |
+| 📁 **Logs**           | Archivos con rotación de 14 días        |
 
 ### 📦 Colección de Postman Incluida
 
@@ -404,8 +440,23 @@ GET http://localhost:3000/estadisticas
 ```bash
 npm run dev     # 🔥 Desarrollo con hot-reload
 npm start       # 🚀 Producción
+npm run seed    # 🌱 Poblar base de datos con 15 empleados de ejemplo
 npm test        # 🧪 Tests (por implementar)
 ```
+
+### 🌱 Datos de Ejemplo (Seeder)
+
+Ejecuta el seeder para poblar la base de datos con 15 empleados de ejemplo:
+
+```bash
+npm run seed
+```
+
+El seeder:
+- ✅ Crea 15 empleados con datos realistas
+- 🚫 Evita duplicados si ya existen
+- 📊 Muestra resumen de la operación
+- 🎯 Perfecto para testing y demos
 
 ---
 

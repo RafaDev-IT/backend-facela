@@ -3,6 +3,12 @@ const Empleado = require('../models/Empleado');
 
 const empleadosService = {
   crearEmpleado: (empleadoData) => {
+    // Verificar si ya existe un empleado con el mismo nombre
+    const empleadoExistente = database.empleados.getByNombre(empleadoData.nombre);
+    if (empleadoExistente) {
+      throw new Error('Ya existe un empleado con ese nombre');
+    }
+    
     const nuevoEmpleado = database.empleados.create(empleadoData);
     return new Empleado(
       nuevoEmpleado.id,
@@ -15,6 +21,13 @@ const empleadosService = {
 
   obtenerEmpleados: (filtros = {}) => {
     let empleados = database.empleados.getAll();
+    
+    // Aplicar búsqueda por nombre
+    if (filtros.search) {
+      empleados = empleados.filter(emp => 
+        emp.nombre.toLowerCase().includes(filtros.search.toLowerCase())
+      );
+    }
     
     // Aplicar filtros
     if (filtros.edadMin) {
@@ -85,6 +98,14 @@ const empleadosService = {
   },
 
   actualizarEmpleado: (id, datosActualizados) => {
+    // Si se está actualizando el nombre, verificar que no exista otro empleado con ese nombre
+    if (datosActualizados.nombre) {
+      const empleadoExistente = database.empleados.getByNombre(datosActualizados.nombre);
+      if (empleadoExistente && empleadoExistente.id !== parseInt(id)) {
+        throw new Error('Ya existe otro empleado con ese nombre');
+      }
+    }
+    
     const empleadoActualizado = database.empleados.update(id, datosActualizados);
     
     if (!empleadoActualizado) {
@@ -102,6 +123,22 @@ const empleadosService = {
 
   eliminarEmpleado: (id) => {
     return database.empleados.delete(id);
+  },
+
+  obtenerEmpleadoPorId: (id) => {
+    const empleado = database.empleados.getById(id);
+    
+    if (!empleado) {
+      return null;
+    }
+    
+    return new Empleado(
+      empleado.id,
+      empleado.nombre,
+      empleado.edad,
+      empleado.puesto,
+      empleado.departamento
+    );
   }
 };
 
