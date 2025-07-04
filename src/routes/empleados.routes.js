@@ -9,6 +9,9 @@ const {
   idParamValidation
 } = require('../utils/validators');
 
+// Importar documentación Swagger
+require('./empleados.swagger');
+
 router.post('/', 
   empleadoValidationRules(),
   handleValidationErrors,

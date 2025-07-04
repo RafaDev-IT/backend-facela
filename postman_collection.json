@@ -20,6 +20,19 @@
       }
     },
     {
+      "name": "Documentación Swagger",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api-docs",
+          "host": ["{{base_url}}"],
+          "path": ["api-docs"]
+        },
+        "description": "Acceder a la documentación interactiva Swagger"
+      }
+    },
+    {
       "name": "Crear Empleado",
       "request": {
         "method": "POST",

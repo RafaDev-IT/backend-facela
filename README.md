@@ -14,6 +14,7 @@
 - 🔄 **API RESTful** siguiendo estándares HTTP
 - 🌐 **CORS habilitado** para integración con frontends
 - 🏥 **Health Check** endpoint para monitoreo
+- 📖 **Documentación Swagger/OpenAPI** interactiva
 
 ## 🛠️ Stack Tecnológico
 
@@ -80,6 +81,20 @@ npm start
 ```
 
 ✨ **¡Listo!** La API estará disponible en `http://localhost:3000`
+
+### 📖 Documentación Interactiva (Swagger)
+
+Una vez iniciada la aplicación, puedes acceder a la documentación interactiva en:
+
+```
+http://localhost:3000/api-docs
+```
+
+La documentación Swagger incluye:
+- 🎯 Distinción clara entre endpoints requeridos (🔵) y adicionales (🟢)
+- 🧪 Posibilidad de probar todos los endpoints directamente
+- 📋 Esquemas de datos y respuestas detalladas
+- 🔍 Ejemplos de uso para cada endpoint
 
 ## 📚 API Reference
 
@@ -316,6 +331,9 @@ Organicé el código siguiendo el patrón MVC con servicios separados.
 
 ### 6. **Manejo de Errores Consistente**
 Implementé respuestas HTTP apropiadas (400, 404, 409, 500) con mensajes descriptivos.
+
+### 7. **Documentación Swagger/OpenAPI**
+Documentación interactiva completa con distinción entre endpoints requeridos y adicionales.
 
 ## ⚠️ Manejo de Errores
 
