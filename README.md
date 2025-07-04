@@ -29,6 +29,7 @@
 - 📖 **Swagger/OpenAPI** - Documentación interactiva
 - 📊 **Winston** - Logging profesional
 - 🎯 **JavaScript ES6+** - Sintaxis moderna
+- 🚀 **Render** - Plataforma de deployment en producción
 
 ## 📁 Estructura del Proyecto
 
@@ -88,6 +89,16 @@ npm start
 ```
 
 ✨ **¡Listo!** La API estará disponible en `http://localhost:3000`
+
+### 🚀 API en Producción
+
+La API ya está **desplegada y funcionando en producción** en Render:
+
+🌐 **URL de Producción:** https://backend-facela.onrender.com
+
+Puedes probar todos los endpoints directamente en producción. Por ejemplo:
+- Health Check: https://backend-facela.onrender.com/health
+- Documentación Swagger: https://backend-facela.onrender.com/api-docs
 
 ### 📖 Documentación Interactiva (Swagger)
 
@@ -381,6 +392,10 @@ Implementé tests unitarios y de integración con Jest y Supertest, alcanzando a
 
 ### 10. **Dockerización**
 Contenerización con Docker para facilitar el despliegue.
+
+### 11. **Deployment en Producción**
+API desplegada y funcionando en producción en Render.com, accesible 24/7 en:
+🌐 **https://backend-facela.onrender.com**
 
 ## ⚠️ Manejo de Errores
 
