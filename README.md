@@ -84,38 +84,22 @@ npm start
 ## 📚 API Reference
 
 ### 🎯 Base URL
-
 ```
 http://localhost:3000
 ```
 
-### 📋 Endpoints Disponibles
-
-#### 🏥 **GET** `/health` - Health Check
-
-Verifica el estado de la API y obtiene información del sistema.
-
-**📤 Response (200):**
-
-```json
-{
-  "status": "OK",
-  "message": "API funcionando correctamente",
-  "timestamp": "2024-01-15T10:30:00.000Z",
-  "uptime": 3600,
-  "environment": "development",
-  "version": "1.0.0"
-}
-```
-
 ---
 
-#### 1️⃣ **POST** `/empleados` - Crear empleado
+## 🎯 Endpoints Requeridos en la Prueba Técnica
 
-Crea un nuevo empleado en el sistema.
+Los siguientes endpoints fueron solicitados específicamente en la evaluación:
+
+### 1️⃣ **POST** `/empleados` - Crear empleado
+**✅ Requerido en la prueba**
+
+Crea un nuevo empleado con validaciones de edad positiva y nombre mínimo 3 caracteres.
 
 **📥 Request Body:**
-
 ```json
 {
   "nombre": "Juan Pérez",
@@ -125,15 +109,7 @@ Crea un nuevo empleado en el sistema.
 }
 ```
 
-**✅ Validaciones:**
-
-- 📝 `nombre`: string, mínimo 3 caracteres
-- 🔢 `edad`: número entero positivo
-- 💼 `puesto`: string, requerido
-- 🏢 `departamento`: string, requerido
-
 **📤 Response exitosa (201):**
-
 ```json
 {
   "message": "Empleado creado exitosamente",
@@ -149,85 +125,29 @@ Crea un nuevo empleado en el sistema.
 
 ---
 
-#### 2️⃣ **GET** `/empleados` - Listar empleados con paginación
+### 2️⃣ **GET** `/empleados` - Listar empleados
+**✅ Requerido en la prueba** - Con filtros por edadMin, edadMax y puesto
 
-Obtiene la lista de empleados con filtros opcionales y paginación.
+Lista empleados con los filtros solicitados en la prueba.
 
-**🔍 Query Parameters (todos opcionales):**
-| Parámetro | Tipo | Descripción | Default |
-|-----------|------|-------------|---------|
-| `page` | number | Número de página | 1 |
-| `limit` | number | Items por página (máx 100) | 10 |
-| `search` | string | Buscar por nombre | - |
-| `edadMin` | number | Edad mínima | - |
-| `edadMax` | number | Edad máxima | - |
-| `puesto` | string | Filtrar por puesto (búsqueda parcial) | - |
-| `departamento` | string | Filtrar por departamento (búsqueda parcial) | - |
+**🔍 Query Parameters requeridos:**
+- `edadMin` - Edad mínima
+- `edadMax` - Edad máxima  
+- `puesto` - Filtrar por puesto
 
-**💡 Ejemplos de uso:**
-
+**Ejemplo solicitado en la prueba:**
 ```
-GET /empleados?page=1&limit=5
-GET /empleados?edadMin=25&edadMax=35&puesto=Desarrollador&page=2&limit=10
-```
-
-**📤 Response (200):**
-
-```json
-{
-  "message": "Empleados obtenidos exitosamente",
-  "data": [
-    {
-      "id": 1,
-      "nombre": "Juan Pérez",
-      "edad": 28,
-      "puesto": "Desarrollador",
-      "departamento": "Tecnología"
-    }
-  ],
-  "pagination": {
-    "currentPage": 1,
-    "totalPages": 3,
-    "totalItems": 15,
-    "itemsPerPage": 5,
-    "hasNextPage": true,
-    "hasPreviousPage": false
-  }
-}
+GET /empleados?edadMin=30&puesto=Contadora&departamento=Contabilidad
 ```
 
 ---
 
-#### 3️⃣ **GET** `/empleados/:id` - Obtener empleado por ID
+### 3️⃣ **GET** `/empleados/mayores` - Empleados mayores de 30
+**✅ Requerido en la prueba**
 
-Obtiene la información de un empleado específico.
-
-**🔧 Parámetros:**
-- `id`: ID del empleado (número entero)
+Lista empleados cuya edad es mayor a 30 años.
 
 **📤 Response (200):**
-
-```json
-{
-  "message": "Empleado obtenido exitosamente",
-  "data": {
-    "id": 1,
-    "nombre": "Juan Pérez",
-    "edad": 28,
-    "puesto": "Desarrollador",
-    "departamento": "Tecnología"
-  }
-}
-```
-
----
-
-#### 4️⃣ **GET** `/empleados/mayores` - Empleados mayores de 30
-
-Lista todos los empleados con edad superior a 30 años.
-
-**📤 Response (200):**
-
 ```json
 {
   "message": "Empleados mayores a 30 años obtenidos exitosamente",
@@ -246,82 +166,45 @@ Lista todos los empleados con edad superior a 30 años.
 
 ---
 
-#### 5️⃣ **PUT** `/empleados/:id` - Actualizar empleado
+### 4️⃣ **PUT** `/empleados/:id` - Actualizar empleado
+**✅ Requerido en la prueba**
 
-Actualiza los datos de un empleado existente.
+Actualiza un empleado existente con validación de existencia.
 
 **🔧 Parámetros:**
+- `id`: ID del empleado
 
-- `id`: ID del empleado (número entero)
-
-**📥 Request Body (todos los campos opcionales):**
-
+**📥 Request Body:**
 ```json
 {
   "nombre": "Juan Pérez González",
   "edad": 29,
-  "puesto": "Senior Developer",
-  "departamento": "Tecnología"
-}
-```
-
-**✅ Response exitosa (200):**
-
-```json
-{
-  "message": "Empleado actualizado exitosamente",
-  "data": {
-    "id": 1,
-    "nombre": "Juan Pérez González",
-    "edad": 29,
-    "puesto": "Senior Developer",
-    "departamento": "Tecnología"
-  }
-}
-```
-
-**❌ Empleado no encontrado (404):**
-
-```json
-{
-  "message": "Empleado no encontrado"
+  "puesto": "Senior Developer"
 }
 ```
 
 ---
 
-#### 6️⃣ **DELETE** `/empleados/:id` - Eliminar empleado
+### 5️⃣ **DELETE** `/empleados/:id` - Eliminar empleado
+**✅ Requerido en la prueba**
 
-Elimina un empleado del sistema.
+Elimina un empleado por su ID.
 
 **🔧 Parámetros:**
-
-- `id`: ID del empleado (número entero)
-
-**✅ Response exitosa (200):**
-
-```json
-{
-  "message": "Empleado eliminado exitosamente"
-}
-```
-
-**❌ Empleado no encontrado (404):**
-
-```json
-{
-  "message": "Empleado no encontrado"
-}
-```
+- `id`: ID del empleado
 
 ---
 
-#### 7️⃣ **GET** `/estadisticas` - Estadísticas generales
+### 6️⃣ **GET** `/estadisticas` - Estadísticas
+**✅ Requerido en la prueba**
 
-Obtiene un resumen estadístico de todos los empleados.
+Devuelve el resumen solicitado:
+- Total de empleados
+- Promedio de edad
+- Cantidad por puesto
+- Cantidad por departamento
 
 **📊 Response (200):**
-
 ```json
 {
   "message": "Estadísticas obtenidas exitosamente",
@@ -330,17 +213,109 @@ Obtiene un resumen estadístico de todos los empleados.
     "promedioEdad": 32,
     "cantidadPorPuesto": {
       "Desarrollador": 2,
-      "Gerente": 1,
-      "Contador": 2
+      "Gerente": 1
     },
     "cantidadPorDepartamento": {
       "Tecnología": 2,
-      "Ventas": 1,
-      "Contabilidad": 2
+      "Ventas": 1
     }
   }
 }
 ```
+
+---
+
+## 🚀 Endpoints Adicionales (Iniciativa Propia)
+
+Como desarrollador autodidacta, implementé los siguientes endpoints adicionales para mejorar la funcionalidad:
+
+### 🔍 **Búsqueda por nombre en GET /empleados**
+**➕ Adicional**
+
+Agregué el parámetro `search` para buscar empleados por nombre.
+
+```
+GET /empleados?search=Juan
+```
+
+---
+
+### 📄 **Paginación en GET /empleados**
+**➕ Adicional**
+
+Implementé paginación profesional con metadatos completos:
+- `page` - Número de página (default: 1)
+- `limit` - Items por página (default: 10, max: 100)
+
+Response incluye:
+```json
+{
+  "data": [...],
+  "pagination": {
+    "currentPage": 1,
+    "totalPages": 3,
+    "totalItems": 15,
+    "itemsPerPage": 5,
+    "hasNextPage": true,
+    "hasPreviousPage": false
+  }
+}
+```
+
+---
+
+### 🆔 **GET** `/empleados/:id` - Obtener empleado por ID
+**➕ Adicional**
+
+Endpoint para obtener un empleado específico.
+
+```
+GET /empleados/1
+```
+
+---
+
+### 🏥 **GET** `/health` - Health Check
+**➕ Adicional**
+
+Endpoint para monitoreo y estado del servicio.
+
+**📤 Response:**
+```json
+{
+  "status": "OK",
+  "message": "API funcionando correctamente",
+  "timestamp": "2024-01-15T10:30:00.000Z",
+  "uptime": 3600,
+  "environment": "development",
+  "version": "1.0.0"
+}
+```
+
+---
+
+## 🛡️ Mejoras Implementadas por Iniciativa Propia
+
+### 1. **Validación de Nombres Duplicados**
+Agregué validación para evitar empleados con nombres idénticos, devolviendo error 409 (Conflict).
+
+### 2. **Logging Avanzado con Winston**
+Implementé logs con rotación diaria y archivos separados para errores.
+
+### 3. **Seeder de Datos**
+Creé un seeder con 15 empleados realistas para facilitar las pruebas:
+```bash
+npm run seed
+```
+
+### 4. **Colección de Postman**
+Incluí una colección completa para importar y probar todos los endpoints.
+
+### 5. **Estructura MVC Profesional**
+Organicé el código siguiendo el patrón MVC con servicios separados.
+
+### 6. **Manejo de Errores Consistente**
+Implementé respuestas HTTP apropiadas (400, 404, 409, 500) con mensajes descriptivos.
 
 ## ⚠️ Manejo de Errores
 
