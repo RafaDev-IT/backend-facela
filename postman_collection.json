@@ -1,0 +1,173 @@
+{
+  "info": {
+    "_postman_id": "empleados-api-collection",
+    "name": "API Empleados - Backend Facela",
+    "description": "Colección completa de endpoints para la API REST de gestión de empleados",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        },
+        "description": "Verifica el estado de la API"
+      }
+    },
+    {
+      "name": "Crear Empleado",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Juan Pérez\",\n  \"edad\": 28,\n  \"puesto\": \"Desarrollador\",\n  \"departamento\": \"Tecnología\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/empleados",
+          "host": ["{{base_url}}"],
+          "path": ["empleados"]
+        },
+        "description": "Crea un nuevo empleado en el sistema"
+      }
+    },
+    {
+      "name": "Listar Todos los Empleados",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/empleados",
+          "host": ["{{base_url}}"],
+          "path": ["empleados"]
+        },
+        "description": "Obtiene la lista completa de empleados"
+      }
+    },
+    {
+      "name": "Listar Empleados con Filtros",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/empleados?edadMin=25&edadMax=35&puesto=Desarrollador&departamento=Tecnología",
+          "host": ["{{base_url}}"],
+          "path": ["empleados"],
+          "query": [
+            {
+              "key": "edadMin",
+              "value": "25"
+            },
+            {
+              "key": "edadMax",
+              "value": "35"
+            },
+            {
+              "key": "puesto",
+              "value": "Desarrollador"
+            },
+            {
+              "key": "departamento",
+              "value": "Tecnología"
+            }
+          ]
+        },
+        "description": "Lista empleados aplicando filtros de edad, puesto y departamento"
+      }
+    },
+    {
+      "name": "Obtener Empleados Mayores de 30",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/empleados/mayores",
+          "host": ["{{base_url}}"],
+          "path": ["empleados", "mayores"]
+        },
+        "description": "Lista todos los empleados con edad mayor a 30 años"
+      }
+    },
+    {
+      "name": "Actualizar Empleado",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Juan Pérez González\",\n  \"edad\": 29,\n  \"puesto\": \"Senior Developer\",\n  \"departamento\": \"Tecnología\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/empleados/1",
+          "host": ["{{base_url}}"],
+          "path": ["empleados", "1"]
+        },
+        "description": "Actualiza los datos de un empleado existente"
+      }
+    },
+    {
+      "name": "Eliminar Empleado",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/empleados/1",
+          "host": ["{{base_url}}"],
+          "path": ["empleados", "1"]
+        },
+        "description": "Elimina un empleado del sistema"
+      }
+    },
+    {
+      "name": "Obtener Estadísticas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/estadisticas",
+          "host": ["{{base_url}}"],
+          "path": ["estadisticas"]
+        },
+        "description": "Obtiene estadísticas generales de todos los empleados"
+      }
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000",
+      "type": "string"
+    }
+  ]
+}
