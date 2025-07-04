@@ -30,6 +30,12 @@
  *     description: |
  *       Endpoint requerido en la prueba técnica con filtros por edadMin, edadMax y puesto.
  *       
+ *       **Ejemplos de uso:**
+ *       - Sin filtros: `/empleados` - Lista todos los empleados
+ *       - Con filtros: `/empleados?edadMin=30&puesto=Contadora&departamento=Contabilidad`
+ *       - Con paginación: `/empleados?page=1&limit=5`
+ *       - Búsqueda por nombre: `/empleados?search=Juan`
+ *       
  *       **Mejoras adicionales implementadas:**
  *       - 🟢 Paginación con metadatos completos
  *       - 🟢 Búsqueda por nombre

@@ -48,6 +48,10 @@ const options = {
       {
         name: 'Estadísticas',
         description: '📊 Endpoint de estadísticas'
+      },
+      {
+        name: 'Utilidades',
+        description: '🛠️ Utilidades y herramientas'
       }
     ],
     components: {
