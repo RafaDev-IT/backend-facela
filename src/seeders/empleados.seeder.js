@@ -2,94 +2,109 @@ const database = require('../db/database');
 
 const empleadosSeed = [
   {
-    nombre: "María García López",
-    edad: 28,
-    puesto: "Desarrolladora Frontend",
-    departamento: "Tecnología"
+    id: 1,
+    nombre: "Ana Pérez",
+    edad: 35,
+    puesto: "Contadora",
+    departamento: "Contabilidad"
   },
   {
-    nombre: "Juan Carlos Rodríguez",
-    edad: 35,
-    puesto: "Gerente de Proyectos",
+    id: 2,
+    nombre: "Carlos López",
+    edad: 28,
+    puesto: "Analista de Costos",
+    departamento: "Contabilidad"
+  },
+  {
+    id: 3,
+    nombre: "Luis García",
+    edad: 42,
+    puesto: "Gerente Administrativo",
     departamento: "Administración"
   },
   {
-    nombre: "Ana Martínez Sánchez",
-    edad: 42,
-    puesto: "Contadora Senior",
-    departamento: "Contabilidad"
-  },
-  {
-    nombre: "Luis Fernando Pérez",
-    edad: 26,
-    puesto: "Desarrollador Backend",
-    departamento: "Tecnología"
-  },
-  {
-    nombre: "Carmen Sofía Jiménez",
+    id: 4,
+    nombre: "María Torres",
     edad: 31,
-    puesto: "Analista de RRHH",
-    departamento: "Recursos Humanos"
+    puesto: "Asistente Administrativa",
+    departamento: "Administración"
   },
   {
-    nombre: "Roberto Alejandro Díaz",
-    edad: 45,
-    puesto: "Director Financiero",
-    departamento: "Finanzas"
-  },
-  {
-    nombre: "Patricia Elena Morales",
-    edad: 29,
-    puesto: "Diseñadora UX/UI",
-    departamento: "Tecnología"
-  },
-  {
-    nombre: "Diego Armando Castro",
-    edad: 38,
-    puesto: "Jefe de Ventas",
-    departamento: "Ventas"
-  },
-  {
-    nombre: "Lucía Fernanda Torres",
+    id: 5,
+    nombre: "Javier Méndez",
     edad: 24,
-    puesto: "Asistente Contable",
-    departamento: "Contabilidad"
+    puesto: "Desarrollador",
+    departamento: "Informatica"
   },
   {
-    nombre: "Miguel Ángel Vargas",
-    edad: 33,
-    puesto: "DevOps Engineer",
-    departamento: "Tecnología"
-  },
-  {
-    nombre: "Rosa María Gutiérrez",
-    edad: 37,
-    puesto: "Gerente de Marketing",
+    id: 6,
+    nombre: "Sofía Romero",
+    edad: 29,
+    puesto: "Diseñadora Gráfica",
     departamento: "Marketing"
   },
   {
-    nombre: "Fernando José Ramírez",
-    edad: 41,
-    puesto: "Analista de Sistemas",
-    departamento: "Tecnología"
+    id: 7,
+    nombre: "Roberto Díaz",
+    edad: 38,
+    puesto: "Jefe de Operaciones",
+    departamento: "Operaciones"
   },
   {
-    nombre: "Isabel Cristina Flores",
+    id: 8,
+    nombre: "Elena Gutiérrez",
+    edad: 26,
+    puesto: "Asistente de Recursos Humanos",
+    departamento: "RRHH"
+  },
+  {
+    id: 9,
+    nombre: "Pedro Martínez",
+    edad: 45,
+    puesto: "Jefe de Proyecto",
+    departamento: "Informatica"
+  },
+  {
+    id: 10,
+    nombre: "Laura Jiménez",
+    edad: 32,
+    puesto: "Analista QA",
+    departamento: "Informatica"
+  },
+  {
+    id: 11,
+    nombre: "Miguel Salazar",
+    edad: 40,
+    puesto: "Arquitecto de Software",
+    departamento: "Informatica"
+  },
+  {
+    id: 12,
+    nombre: "Isabel Ruiz",
     edad: 27,
     puesto: "Ejecutiva de Ventas",
     departamento: "Ventas"
   },
   {
-    nombre: "Andrés Felipe Mendoza",
-    edad: 32,
-    puesto: "Contador Junior",
-    departamento: "Contabilidad"
+    id: 13,
+    nombre: "Daniela Vega",
+    edad: 30,
+    puesto: "Diseñadora UX",
+    departamento: "Marketing"
   },
   {
-    nombre: "Claudia Marcela Silva",
-    edad: 39,
-    puesto: "Directora de RRHH",
-    departamento: "Recursos Humanos"
+    id: 14,
+    nombre: "Oscar Herrera",
+    edad: 33,
+    puesto: "Soporte Técnico",
+    departamento: "Informatica"
+  },
+  {
+    id: 15,
+    nombre: "Patricia Castro",
+    edad: 36,
+    puesto: "Analista de Nómina",
+    departamento: "RRHH"
   }
 ];
 

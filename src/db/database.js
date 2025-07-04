@@ -13,9 +13,13 @@ const empleadosMethods = {
   
   create: (empleadoData) => {
     const nuevoEmpleado = {
-      id: nextId++,
+      id: empleadoData.id || nextId++,
       ...empleadoData
     };
+    // Actualizar nextId si el ID proporcionado es mayor o igual
+    if (empleadoData.id && empleadoData.id >= nextId) {
+      nextId = empleadoData.id + 1;
+    }
     empleados.push(nuevoEmpleado);
     return nuevoEmpleado;
   },
